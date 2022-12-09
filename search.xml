@@ -1,10 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker</title>
+    <url>/2022/11/24/Docker/</url>
+    <content><![CDATA[<p>待完成</p>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>Docker将用户程序和所需要调用系统的函数库一起打包。</p>
+<p>镜像和容器：</p>
+<p>​    镜像：Docker将应用程序及其所需的依赖，函数库，环境，配置等文件打包在一起，称为镜像。</p>
+<p>​    容器：镜像中的应用程序运行后形成的进程就是容器，只是Docker会给容器做隔离，对外不可见。</p>
+<p>DockerHub是镜像托管平台。</p>
+<p>Docker架构：</p>
+<p>​    CS架构</p>
+<p>​    服务端：Docker守护进程，负责接收处理Docker指令，管理镜像，容器等。</p>
+<p>​    客户端：通过命令或RestAPI发送指令到Docker服务端，可以在本地或远程发送。</p>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>1.Linux安装Docker</p>
+<p>参考:<a href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 卸载之前的docker</span><br><span class="line"> sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line">                  </span><br><span class="line"># 2.需要的安装包</span><br><span class="line">yum install -y yum-utils</span><br><span class="line"></span><br><span class="line"># 3.设置镜像的仓库</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"># 默认是从国外的，不推荐</span><br><span class="line"># 推荐使用国内的</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"># 更新yum软件包索引</span><br><span class="line">yum makecache </span><br><span class="line"></span><br><span class="line"># 4.安装docker相关的 docker-ce 社区版 而ee是企业版</span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"># 5、启动docker</span><br><span class="line">docker systemctl start docker</span><br><span class="line"># 6. 使用docker version查看是否按照成功</span><br><span class="line">docker version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.配置镜像加速器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://2lxyghvy.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h2><p>镜像分为两部分，[repository]:[tag] 如mysql:5.7</p>
+<p>如果没有指定tag时，默认为最新版本镜像。</p>
+<h3 id="镜像操作命令"><a href="#镜像操作命令" class="headerlink" title="镜像操作命令"></a>镜像操作命令</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build 本地构建镜像</span><br><span class="line">docker pull 从服务器拉取镜像     docker push</span><br><span class="line">docker images 查看镜像</span><br><span class="line">docker rmi 删除镜像</span><br><span class="line">docker save 保存镜像为一个压缩包   docker load 加载压缩包为镜像</span><br><span class="line">//查看哪个命令是干嘛的：docker images --help </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h3><p>docker pause   docker unpause</p>
+<p>docker  stop    docker start </p>
+<p>docker logs 查看容器运行日志</p>
+<p>docker ps 查看所有运行的容器及状态</p>
+<p>docker exec 进入容器执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">步骤一： 去docker hub查看nginx的容器运行命令</span><br><span class="line">docker run --name containeName -p 80:80 -d nginx </span><br><span class="line">命令解读：</span><br><span class="line">docker run创建并运行一个容器</span><br><span class="line">	--name ：给容器起一个名字，比如叫做run</span><br><span class="line">	--p : 将宿主机端口和容器端口映射，冒号左侧是宿主机端口，右侧是容器端口</span><br><span class="line">	--d :后台运行容器</span><br><span class="line">	nginx: 镜像名称，例如nginx</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">案例：进入nginx容器，修改html文件内容，添加“传智教育欢迎你”</span><br><span class="line">步骤一：进入容器，进入我们刚刚创建的nginx容器的命令为：</span><br><span class="line">docker exec --it mn bash</span><br><span class="line">命令解读：</span><br><span class="line">docker exec: 进入容器内部，执行一个命令</span><br><span class="line">  --it :给当前进入的容器创建一个标准输入，输出终端，允许我们与容器交互</span><br><span class="line">  mn: 要进入的容器的名称</span><br><span class="line">  bash: 进入容器后执行的命令，bash是一个linux终端交互命令</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>容器与数据耦合的问题：不便于修改。</p>
+<p>数据卷（volume)是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
+<p>数据卷的作用：将容器与数据分离，解耦合，方便操作容器内数据，保证数据安全。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">操作数据卷</span><br><span class="line">基本语法如下：</span><br><span class="line">docker volume [COMMAND]</span><br><span class="line">docker volume 命令是数据卷操作，根据命令后跟随的command来确定下一步的操作</span><br><span class="line">	create 创建一个volume</span><br><span class="line">	inspect 显示一个或多个volume的信息</span><br><span class="line">	ls   列出所有的volume</span><br><span class="line">	prune 删除未使用的volume</span><br><span class="line">	rm   删除一个或多个指定的volume</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Docker基本操作"><a href="#Docker基本操作" class="headerlink" title="Docker基本操作"></a>Docker基本操作</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp aaa-DDL.sql mysql:/opt/</span><br><span class="line">docker exec -it mysql bash</span><br><span class="line">docker logs -f --tail=200f proxy-service</span><br><span class="line">tail -300f hospital-qqq.log</span><br><span class="line">ps -ef |grep java</span><br><span class="line">systemctl start qqq.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<p>挂载数据卷</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我们在创建容器时，可以通过-v参数来挂载一个数据卷到某个容器目录</span><br><span class="line">docker run\  创建并运行容器</span><br><span class="line"> --name mn\  给容器起个名字叫mn</span><br><span class="line"> -v html:/root/html\	-v html:/root/htm: 把html数据卷挂载到容器内的/root/html/这个目录中</span><br><span class="line"> -p 8080:80		把宿主机的8080端口映射到容器内的80端口</span><br><span class="line"> nginx \	镜像名称</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="DockerCompose部署微服务集群"><a href="#DockerCompose部署微服务集群" class="headerlink" title="DockerCompose部署微服务集群"></a>DockerCompose部署微服务集群</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用DockerCompose部署带有图象界面的DockerRegistry，命令如下：</span><br><span class="line"> version:&#x27;3.0&#x27;</span><br><span class="line"> services:</span><br><span class="line">    registry:</span><br><span class="line">        image:registry</span><br><span class="line">        volumes:</span><br><span class="line">            - ./registry-data:/var/lib/registry</span><br><span class="line">    ui:</span><br><span class="line">        image:joxit/docker-registry-ui:static</span><br><span class="line">        ports:</span><br><span class="line">            - 8080:80</span><br><span class="line">        environment:</span><br><span class="line">            - REGISTRY._TITLE=传智教育私有仓库</span><br><span class="line">            - REGISTRY_URL=http://registry:5000</span><br><span class="line">    	depends_on:</span><br><span class="line">            - registry</span><br></pre></td></tr></table></figure>
+
+
+
+<p>各自打好jar包丢在目标父工程的对应微服务里（和DockerFile同级），然后docker-compose 执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.推送本地镜像到仓库前都必须重命名（docker tag）镜像，以镜像仓库地址为前缀</span><br><span class="line">2.镜像仓库推送前需要把仓库地址配置到docker服务的daemon，json文件中，被docker信任</span><br><span class="line">3.推送使用docker push命令</span><br><span class="line">4.拉取使用docker pull命令</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Dockerfile自定义镜像结构"><a href="#Dockerfile自定义镜像结构" class="headerlink" title="Dockerfile自定义镜像结构"></a>Dockerfile自定义镜像结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">镜像是分层结构，每一层成为一个Layer</span><br><span class="line">BaseImage层：包含基本的系统函数库，环境变量，文件系统。</span><br><span class="line">Entrypoint: 入口，是镜像中应用启动的命令</span><br><span class="line">其他：在BaseImage基础上添加依赖，安装程序，完成整个应用的安装和配置。</span><br></pre></td></tr></table></figure>
+
+<p>自定义镜像：</p>
+<p>Dockerfile文件编写，里面包含一个个的指令，用指令说明要执行什么操作要构建镜像，每个指令会形成一层Layer</p>
+<p>Dockerfile就是一个文本文件，其中包含一个个的指令（Instruction），用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层Layer。</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>指定基础镜像</td>
+<td>FROM centos:6</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量，可在后面指令使用</td>
+<td>ENV key value</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>拷贝本地文件到镜像的指定目录</td>
+<td>COPY ./mysql-5.7.rpm /tmp</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>执行Linux的shell命令，一般是安装过程的命令</td>
+<td>RUN yum install gcc</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>指定容器运行时监听的端口，是给镜像使用者看的</td>
+<td>EXPOSE 8080</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>镜像中应用的启动命令，容器运行时调用</td>
+<td>ENTRYPOINT java -jar xx.jar</td>
+</tr>
+</tbody></table>
+<h2 id="构建Docker镜像"><a href="#构建Docker镜像" class="headerlink" title="构建Docker镜像"></a>构建Docker镜像</h2><p>1.打jar包跳过测试，模块下创建docker文件夹，把jar包丢进去</p>
+<p>2.docker文件夹下建立Dockerfile文件，</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8</span><br><span class="line">ENV wordic=/root/wh2106/eurek-server</span><br><span class="line">COPY .$&#123;Workdir&#125;</span><br><span class="line">WORKDIR $&#123;workdir&#125;</span><br><span class="line">EXPOSE 8761</span><br><span class="line">CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;jar包名字&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.docker命令下新建脚本run.sh</p>
+<p>cd ..&amp;&amp; docker build ./eureka -server  -t eureka-server:1.0 </p>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis和MybatisPlus的使用</title>
+    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>未完成…….</p>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
+<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
+      <tags>
+        <tag>Mybatis MybatisPlus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git相关</title>
     <url>/2022/11/16/Git%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>git  config –global user.name “aaa” 设置用户信息</p>
-<p>git config –global user.email “<a href="mailto:&#x61;&#x61;&#64;&#x31;&#54;&#x33;&#46;&#99;&#111;&#109;">&#x61;&#x61;&#64;&#x31;&#54;&#x33;&#46;&#99;&#111;&#109;</a>“</p>
+<p>git config –global user.email “<a href="mailto:&#x61;&#97;&#64;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#109;">&#x61;&#97;&#64;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#109;</a>“</p>
 <h2 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h2><p>git config –global user.name</p>
 <p>git config –global user.email </p>
 <h1 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h1><p>git init     初始化仓库</p>
@@ -49,6 +187,123 @@
       <tags>
         <tag>Git</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot 注解大全</title>
+    <url>/2022/11/24/SpringBoot-%E6%B3%A8%E8%A7%A3%E5%A4%A7%E5%85%A8/</url>
+    <content><![CDATA[<p>参考1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1772324</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1921919</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>SpringBoot 注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nacos SpringCloud</title>
+    <url>/2022/11/24/Nacos-SpringCloud/</url>
+    <content><![CDATA[<p>未完成</p>
+<h1 id="Nacos-Spring-Cloud"><a href="#Nacos-Spring-Cloud" class="headerlink" title="Nacos Spring Cloud"></a>Nacos Spring Cloud</h1><p>安装：下载安装包 ,解压 ,bin目录下执行startup.cmd -m standlone</p>
+<h2 id="启动配置管理"><a href="#启动配置管理" class="headerlink" title="启动配置管理"></a>启动配置管理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、如何使用Nacos作为配置中心统一管理配置</span><br><span class="line">	1）、引入依赖，</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">   		&lt;groupId&gt;com.alibaba.cLoud&lt;/groupId&gt;</span><br><span class="line">   		&lt;artifactId&gt;spring-cLoud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	2）、创建一个bootstrap，properties.</span><br><span class="line">		spring.application.name=gulimall-coupon</span><br><span class="line">		spring.cLoud.nacos.config.server-addr=127.0.0.1:8848</span><br><span class="line">        </span><br><span class="line">3)需要给配置中心默认添加一个叫数据集（Data Id）gulimall-coupon，.properties。默认规则，应用名.properties</span><br><span class="line">4）、给应用名，properties添加任何配置</span><br><span class="line">5）、动态获取配置。</span><br><span class="line">	@RefreshScope：动态获取并刷新配置</span><br><span class="line">	@Value（&quot;$配置项的名&#125;&quot;）：获取到配置。</span><br><span class="line">如果配置中心和当前应用的配置文件中都配置了相同的项，优先使用配置中心的配置。</span><br><span class="line">2、细节</span><br><span class="line">	1）、命名空间：配置隔离：</span><br><span class="line">		默认：public（保留空间）；默认新增的所有配置都在public空间。</span><br><span class="line">		1、开发，测试，生产：利用命名空间来做环境隔离。</span><br><span class="line">		注意：在bootstrap，properties；配置上，需要使用哪个命名空间下的配置，</span><br><span class="line">		spring.cLoud.nacos.config.namespace=9de62e44-cd2a-4a82-bf5c-95878bd5e871</span><br><span class="line">		2、每一个微服务之间互相隔离配置，每一个微服务都创建自己的命名空间，只加载自己命名空间下的所有配置</span><br><span class="line">	2）、配置集：所有的配置的集合</span><br><span class="line">	3）、配置集ID：类似文件名。</span><br><span class="line">		Data ID:类似文件名</span><br><span class="line">	4）、配置分组：</span><br><span class="line">		默认所有的配置都属于:DEFAULT_GROUP</span><br><span class="line">		1111 618  1212 	</span><br><span class="line">项目中的使用，每个微服务创建自己的命名空间，使用配置分组区分环境，dev,test,prod</span><br><span class="line"></span><br><span class="line">3、同时加载多个配置集</span><br><span class="line">	1）、微服务任何配置信息，任何配置文件都可以放在配置中心中。</span><br><span class="line">			配置优先级：服务名-profile.yaml&gt; 服务名.yaml &gt;本地配置</span><br><span class="line">	2）、只需要在bootstrap，properties说明加载配置中心中哪些配置文件即可</span><br><span class="line">	3）、热更新： @Value，@ConfigurationProperties</span><br><span class="line">	</span><br><span class="line">以前SpringBoot任何方法从配置文件中获取值，都能使用。</span><br><span class="line">配置中心有的优先使用配置中心中的。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例：</p>
+<p>1.common中添加依赖 nacos配置中心</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.在coupons项目中创建/src/main/resources/bootstrap.yml，优先级别application.properties高</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line"> <span class="string">//案例：</span></span><br><span class="line">    <span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line">    <span class="attr">spring:</span></span><br><span class="line">      <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">gulimall-coupon</span>  <span class="comment">#服务名称</span></span><br><span class="line">      <span class="attr">profiles:</span></span><br><span class="line">        <span class="attr">active:</span> <span class="string">dev</span> <span class="comment">#开发环境，这里是dev</span></span><br><span class="line">      <span class="attr">cloud:</span></span><br><span class="line">        <span class="attr">nacos:</span></span><br><span class="line">          <span class="attr">config:</span></span><br><span class="line">            <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment">#nacos地址</span></span><br><span class="line">            <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 指定配置文件为yaml格式</span></span><br><span class="line"><span class="string">//服务名-环境-后缀名就是data</span> <span class="string">ID</span></span><br></pre></td></tr></table></figure>
+
+<p>3、浏览器去nacos里的配置列表，点击＋号，data ID：<code>gulimall-coupon.yaml</code>，配置</p>
+<p>4.在controller中编写测试代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Value(&quot;$&#123;coupon.user.name&#125;&quot;)</span><br><span class="line">private String name;</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;coupon.user.age&#125;&quot;)</span><br><span class="line">private int age;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/nacos&quot;)</span><br><span class="line">public R nacos()&#123;</span><br><span class="line">    return R.ok().put(&quot;name&quot;, name).put(&quot;age&quot;, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.测试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:7000/coupon/coupon/nacos</span><br></pre></td></tr></table></figure>
+
+<p>6.在coupon的控制层上加<code>@RefreshScope</code>支持动态刷新</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">案例：</span><br><span class="line">		方式一：在@Value注入的变量所在类上添加注解@RefreshScope</span><br><span class="line">        对应@Value注入的变量。</span><br><span class="line">        @Value(&quot;$&#123;pattern.dataformat&#125;&quot;)</span><br><span class="line">        private String dateformat;</span><br><span class="line"></span><br><span class="line">        方式二：使用@ConfigurationProperties注解(约定大于配置) 自动刷新</span><br><span class="line">        @Configurationperties(prefix=&quot;pattern&quot;)</span><br><span class="line">        public class PatternProperties&#123;</span><br><span class="line">            private String dateformat;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>7.新建coupon、member、order、product、ware五个命名空间分别保存自己的配置文件</p>
+<p>nacos说明：<br>最终方案：每个微服务创建自己的命名空间，然后使用配置分组区分环境（dev/test/prod)</p>
+<h2 id="启动服务发现"><a href="#启动服务发现" class="headerlink" title="启动服务发现"></a>启动服务发现</h2><p>1.添加依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;latest.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.配置服务提供者，从而服务提供者可以通过 Nacos 的服务注册发现功能将其服务注册到 Nacos server 上。</p>
+<p>i .在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8070 </span><br><span class="line">spring.application.name=service-provider spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
+
+
+
+<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(NacosProviderApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@RequestMapping(value = &quot;/echo/&#123;string&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">			return &quot;Hello Nacos Discovery &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>配置服务消费者，从而服务消费者可以通过 Nacos 的服务注册发现功能从 Nacos server 上获取到它要调用的服务。</li>
+</ol>
+<p>i. 在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8080</span><br><span class="line">spring.application.name=service-consumer</span><br><span class="line"></span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
+
+<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能。给 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-resttemplate.html">RestTemplate</a> 实例添加 <code>@LoadBalanced</code> 注解，开启 <code>@LoadBalanced</code> 与 <a href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html">Ribbon</a> 的集成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosConsumerApplication &#123;</span><br><span class="line"></span><br><span class="line">    @LoadBalanced</span><br><span class="line">    @Bean</span><br><span class="line">    public RestTemplate restTemplate() &#123;</span><br><span class="line">        return new RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(NacosConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RestController</span><br><span class="line">    public class TestController &#123;</span><br><span class="line"></span><br><span class="line">        private final RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">        @Autowired</span><br><span class="line">        public TestController(RestTemplate restTemplate) &#123;this.restTemplate = restTemplate;&#125;</span><br><span class="line"></span><br><span class="line">        @RequestMapping(value = &quot;/echo/&#123;str&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">        public String echo(@PathVariable String str) &#123;</span><br><span class="line">            return restTemplate.getForObject(&quot;http://service-provider/echo/&quot; + str, String.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>启动 <code>ProviderApplication</code> 和 <code>ConsumerApplication</code> ，调用 <code>http://localhost:8080/echo/2018</code>，返回内容为 <code>Hello Nacos Discovery 2018</code>。</li>
+</ol>
+<h1 id="服务分级存储模型"><a href="#服务分级存储模型" class="headerlink" title="服务分级存储模型"></a>服务分级存储模型</h1><h3 id="服务集群属性："><a href="#服务集群属性：" class="headerlink" title="服务集群属性："></a>服务集群属性：</h3><p>服务-&gt;集群-&gt;实例，</p>
+<p>如何修改集群属性：修改application.yml文件，添加cluster-name属性即可。</p>
+<p>1.修改application.yml ,添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
+
+<p>2.在nacos控制台可以看到集群变化（集群HZ)</p>
+<h3 id="根据集群负载均衡"><a href="#根据集群负载均衡" class="headerlink" title="根据集群负载均衡"></a>根据集群负载均衡</h3><p>1.修改order-service中的application.yml，设置集群为HZ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
+
+<p>这里orderservice是服务调用者。</p>
+<p>2.然后在order-service中设置负载均衡的IRlue为NacosRule,这个规则会优先寻找自己同集群的服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userservice:</span><br><span class="line">  ribbon:</span><br><span class="line">    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NacosRule负载均衡策略</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、会优先选择同集群服务示例列表</span><br><span class="line">2、本地集群找不到提供者，才会去其它集群寻找，并且会报警告</span><br><span class="line">3、确定了可用实例列表后，再采用随机负载均衡挑选示例</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Nacos SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/09/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>MySQL的相关知识</title>
@@ -679,240 +934,12 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker</title>
-    <url>/2022/11/24/Docker/</url>
-    <content><![CDATA[<p>待完成</p>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>Docker将用户程序和所需要调用系统的函数库一起打包。</p>
-<p>镜像和容器：</p>
-<p>​    镜像：Docker将应用程序及其所需的依赖，函数库，环境，配置等文件打包在一起，称为镜像。</p>
-<p>​    容器：镜像中的应用程序运行后形成的进程就是容器，只是Docker会给容器做隔离，对外不可见。</p>
-<p>DockerHub是镜像托管平台。</p>
-<p>Docker架构：</p>
-<p>​    CS架构</p>
-<p>​    服务端：Docker守护进程，负责接收处理Docker指令，管理镜像，容器等。</p>
-<p>​    客户端：通过命令或RestAPI发送指令到Docker服务端，可以在本地或远程发送。</p>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>1.Linux安装Docker</p>
-<p>参考:<a href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 卸载之前的docker</span><br><span class="line"> sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line">                  </span><br><span class="line"># 2.需要的安装包</span><br><span class="line">yum install -y yum-utils</span><br><span class="line"></span><br><span class="line"># 3.设置镜像的仓库</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"># 默认是从国外的，不推荐</span><br><span class="line"># 推荐使用国内的</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"># 更新yum软件包索引</span><br><span class="line">yum makecache </span><br><span class="line"></span><br><span class="line"># 4.安装docker相关的 docker-ce 社区版 而ee是企业版</span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"># 5、启动docker</span><br><span class="line">docker systemctl start docker</span><br><span class="line"># 6. 使用docker version查看是否按照成功</span><br><span class="line">docker version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>2.配置镜像加速器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://2lxyghvy.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h2><p>镜像分为两部分，[repository]:[tag] 如mysql:5.7</p>
-<p>如果没有指定tag时，默认为最新版本镜像。</p>
-<h3 id="镜像操作命令"><a href="#镜像操作命令" class="headerlink" title="镜像操作命令"></a>镜像操作命令</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build 本地构建镜像</span><br><span class="line">docker pull 从服务器拉取镜像     docker push</span><br><span class="line">docker images 查看镜像</span><br><span class="line">docker rmi 删除镜像</span><br><span class="line">docker save 保存镜像为一个压缩包   docker load 加载压缩包为镜像</span><br><span class="line">//查看哪个命令是干嘛的：docker images --help </span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h3><p>docker pause   docker unpause</p>
-<p>docker  stop    docker start </p>
-<p>docker logs 查看容器运行日志</p>
-<p>docker ps 查看所有运行的容器及状态</p>
-<p>docker exec 进入容器执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">步骤一： 去docker hub查看nginx的容器运行命令</span><br><span class="line">docker run --name containeName -p 80:80 -d nginx </span><br><span class="line">命令解读：</span><br><span class="line">docker run创建并运行一个容器</span><br><span class="line">	--name ：给容器起一个名字，比如叫做run</span><br><span class="line">	--p : 将宿主机端口和容器端口映射，冒号左侧是宿主机端口，右侧是容器端口</span><br><span class="line">	--d :后台运行容器</span><br><span class="line">	nginx: 镜像名称，例如nginx</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">案例：进入nginx容器，修改html文件内容，添加“传智教育欢迎你”</span><br><span class="line">步骤一：进入容器，进入我们刚刚创建的nginx容器的命令为：</span><br><span class="line">docker exec --it mn bash</span><br><span class="line">命令解读：</span><br><span class="line">docker exec: 进入容器内部，执行一个命令</span><br><span class="line">  --it :给当前进入的容器创建一个标准输入，输出终端，允许我们与容器交互</span><br><span class="line">  mn: 要进入的容器的名称</span><br><span class="line">  bash: 进入容器后执行的命令，bash是一个linux终端交互命令</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>容器与数据耦合的问题：不便于修改。</p>
-<p>数据卷（volume)是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
-<p>数据卷的作用：将容器与数据分离，解耦合，方便操作容器内数据，保证数据安全。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">操作数据卷</span><br><span class="line">基本语法如下：</span><br><span class="line">docker volume [COMMAND]</span><br><span class="line">docker volume 命令是数据卷操作，根据命令后跟随的command来确定下一步的操作</span><br><span class="line">	create 创建一个volume</span><br><span class="line">	inspect 显示一个或多个volume的信息</span><br><span class="line">	ls   列出所有的volume</span><br><span class="line">	prune 删除未使用的volume</span><br><span class="line">	rm   删除一个或多个指定的volume</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Docker基本操作"><a href="#Docker基本操作" class="headerlink" title="Docker基本操作"></a>Docker基本操作</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp aaa-DDL.sql mysql:/opt/</span><br><span class="line">docker exec -it mysql bash</span><br><span class="line">docker logs -f --tail=200f proxy-service</span><br><span class="line">tail -300f hospital-qqq.log</span><br><span class="line">ps -ef |grep java</span><br><span class="line">systemctl start qqq.jar</span><br></pre></td></tr></table></figure>
-
-
-
-<p>挂载数据卷</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我们在创建容器时，可以通过-v参数来挂载一个数据卷到某个容器目录</span><br><span class="line">docker run\  创建并运行容器</span><br><span class="line"> --name mn\  给容器起个名字叫mn</span><br><span class="line"> -v html:/root/html\	-v html:/root/htm: 把html数据卷挂载到容器内的/root/html/这个目录中</span><br><span class="line"> -p 8080:80		把宿主机的8080端口映射到容器内的80端口</span><br><span class="line"> nginx \	镜像名称</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="DockerCompose部署微服务集群"><a href="#DockerCompose部署微服务集群" class="headerlink" title="DockerCompose部署微服务集群"></a>DockerCompose部署微服务集群</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用DockerCompose部署带有图象界面的DockerRegistry，命令如下：</span><br><span class="line"> version:&#x27;3.0&#x27;</span><br><span class="line"> services:</span><br><span class="line">    registry:</span><br><span class="line">        image:registry</span><br><span class="line">        volumes:</span><br><span class="line">            - ./registry-data:/var/lib/registry</span><br><span class="line">    ui:</span><br><span class="line">        image:joxit/docker-registry-ui:static</span><br><span class="line">        ports:</span><br><span class="line">            - 8080:80</span><br><span class="line">        environment:</span><br><span class="line">            - REGISTRY._TITLE=传智教育私有仓库</span><br><span class="line">            - REGISTRY_URL=http://registry:5000</span><br><span class="line">    	depends_on:</span><br><span class="line">            - registry</span><br></pre></td></tr></table></figure>
-
-
-
-<p>各自打好jar包丢在目标父工程的对应微服务里（和DockerFile同级），然后docker-compose 执行。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.推送本地镜像到仓库前都必须重命名（docker tag）镜像，以镜像仓库地址为前缀</span><br><span class="line">2.镜像仓库推送前需要把仓库地址配置到docker服务的daemon，json文件中，被docker信任</span><br><span class="line">3.推送使用docker push命令</span><br><span class="line">4.拉取使用docker pull命令</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="Dockerfile自定义镜像结构"><a href="#Dockerfile自定义镜像结构" class="headerlink" title="Dockerfile自定义镜像结构"></a>Dockerfile自定义镜像结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">镜像是分层结构，每一层成为一个Layer</span><br><span class="line">BaseImage层：包含基本的系统函数库，环境变量，文件系统。</span><br><span class="line">Entrypoint: 入口，是镜像中应用启动的命令</span><br><span class="line">其他：在BaseImage基础上添加依赖，安装程序，完成整个应用的安装和配置。</span><br></pre></td></tr></table></figure>
-
-<p>自定义镜像：</p>
-<p>Dockerfile文件编写，里面包含一个个的指令，用指令说明要执行什么操作要构建镜像，每个指令会形成一层Layer</p>
-<p>Dockerfile就是一个文本文件，其中包含一个个的指令（Instruction），用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层Layer。</p>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FROM</td>
-<td>指定基础镜像</td>
-<td>FROM centos:6</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>设置环境变量，可在后面指令使用</td>
-<td>ENV key value</td>
-</tr>
-<tr>
-<td>COPY</td>
-<td>拷贝本地文件到镜像的指定目录</td>
-<td>COPY ./mysql-5.7.rpm /tmp</td>
-</tr>
-<tr>
-<td>RUN</td>
-<td>执行Linux的shell命令，一般是安装过程的命令</td>
-<td>RUN yum install gcc</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>指定容器运行时监听的端口，是给镜像使用者看的</td>
-<td>EXPOSE 8080</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>镜像中应用的启动命令，容器运行时调用</td>
-<td>ENTRYPOINT java -jar xx.jar</td>
-</tr>
-</tbody></table>
-<h2 id="构建Docker镜像"><a href="#构建Docker镜像" class="headerlink" title="构建Docker镜像"></a>构建Docker镜像</h2><p>1.打jar包跳过测试，模块下创建docker文件夹，把jar包丢进去</p>
-<p>2.docker文件夹下建立Dockerfile文件，</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8</span><br><span class="line">ENV wordic=/root/wh2106/eurek-server</span><br><span class="line">COPY .$&#123;Workdir&#125;</span><br><span class="line">WORKDIR $&#123;workdir&#125;</span><br><span class="line">EXPOSE 8761</span><br><span class="line">CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;jar包名字&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>3.docker命令下新建脚本run.sh</p>
-<p>cd ..&amp;&amp; docker build ./eureka -server  -t eureka-server:1.0 </p>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nacos SpringCloud</title>
-    <url>/2022/11/24/Nacos-SpringCloud/</url>
-    <content><![CDATA[<p>未完成</p>
-<h1 id="Nacos-Spring-Cloud"><a href="#Nacos-Spring-Cloud" class="headerlink" title="Nacos Spring Cloud"></a>Nacos Spring Cloud</h1><p>安装：下载安装包 ,解压 ,bin目录下执行startup.cmd -m standlone</p>
-<h2 id="启动配置管理"><a href="#启动配置管理" class="headerlink" title="启动配置管理"></a>启动配置管理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、如何使用Nacos作为配置中心统一管理配置</span><br><span class="line">	1）、引入依赖，</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">   		&lt;groupId&gt;com.alibaba.cLoud&lt;/groupId&gt;</span><br><span class="line">   		&lt;artifactId&gt;spring-cLoud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	2）、创建一个bootstrap，properties.</span><br><span class="line">		spring.application.name=gulimall-coupon</span><br><span class="line">		spring.cLoud.nacos.config.server-addr=127.0.0.1:8848</span><br><span class="line">        </span><br><span class="line">3)需要给配置中心默认添加一个叫数据集（Data Id）gulimall-coupon，.properties。默认规则，应用名.properties</span><br><span class="line">4）、给应用名，properties添加任何配置</span><br><span class="line">5）、动态获取配置。</span><br><span class="line">	@RefreshScope：动态获取并刷新配置</span><br><span class="line">	@Value（&quot;$配置项的名&#125;&quot;）：获取到配置。</span><br><span class="line">如果配置中心和当前应用的配置文件中都配置了相同的项，优先使用配置中心的配置。</span><br><span class="line">2、细节</span><br><span class="line">	1）、命名空间：配置隔离：</span><br><span class="line">		默认：public（保留空间）；默认新增的所有配置都在public空间。</span><br><span class="line">		1、开发，测试，生产：利用命名空间来做环境隔离。</span><br><span class="line">		注意：在bootstrap，properties；配置上，需要使用哪个命名空间下的配置，</span><br><span class="line">		spring.cLoud.nacos.config.namespace=9de62e44-cd2a-4a82-bf5c-95878bd5e871</span><br><span class="line">		2、每一个微服务之间互相隔离配置，每一个微服务都创建自己的命名空间，只加载自己命名空间下的所有配置</span><br><span class="line">	2）、配置集：所有的配置的集合</span><br><span class="line">	3）、配置集ID：类似文件名。</span><br><span class="line">		Data ID:类似文件名</span><br><span class="line">	4）、配置分组：</span><br><span class="line">		默认所有的配置都属于:DEFAULT_GROUP</span><br><span class="line">		1111 618  1212 	</span><br><span class="line">项目中的使用，每个微服务创建自己的命名空间，使用配置分组区分环境，dev,test,prod</span><br><span class="line"></span><br><span class="line">3、同时加载多个配置集</span><br><span class="line">	1）、微服务任何配置信息，任何配置文件都可以放在配置中心中。</span><br><span class="line">			配置优先级：服务名-profile.yaml&gt; 服务名.yaml &gt;本地配置</span><br><span class="line">	2）、只需要在bootstrap，properties说明加载配置中心中哪些配置文件即可</span><br><span class="line">	3）、热更新： @Value，@ConfigurationProperties</span><br><span class="line">	</span><br><span class="line">以前SpringBoot任何方法从配置文件中获取值，都能使用。</span><br><span class="line">配置中心有的优先使用配置中心中的。</span><br></pre></td></tr></table></figure>
-
-
-
-<p>案例：</p>
-<p>1.common中添加依赖 nacos配置中心</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2.在coupons项目中创建/src/main/resources/bootstrap.yml，优先级别application.properties高</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line"> <span class="string">//案例：</span></span><br><span class="line">    <span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line">    <span class="attr">spring:</span></span><br><span class="line">      <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">gulimall-coupon</span>  <span class="comment">#服务名称</span></span><br><span class="line">      <span class="attr">profiles:</span></span><br><span class="line">        <span class="attr">active:</span> <span class="string">dev</span> <span class="comment">#开发环境，这里是dev</span></span><br><span class="line">      <span class="attr">cloud:</span></span><br><span class="line">        <span class="attr">nacos:</span></span><br><span class="line">          <span class="attr">config:</span></span><br><span class="line">            <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment">#nacos地址</span></span><br><span class="line">            <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 指定配置文件为yaml格式</span></span><br><span class="line"><span class="string">//服务名-环境-后缀名就是data</span> <span class="string">ID</span></span><br></pre></td></tr></table></figure>
-
-<p>3、浏览器去nacos里的配置列表，点击＋号，data ID：<code>gulimall-coupon.yaml</code>，配置</p>
-<p>4.在controller中编写测试代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Value(&quot;$&#123;coupon.user.name&#125;&quot;)</span><br><span class="line">private String name;</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;coupon.user.age&#125;&quot;)</span><br><span class="line">private int age;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/nacos&quot;)</span><br><span class="line">public R nacos()&#123;</span><br><span class="line">    return R.ok().put(&quot;name&quot;, name).put(&quot;age&quot;, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>5.测试</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:7000/coupon/coupon/nacos</span><br></pre></td></tr></table></figure>
-
-<p>6.在coupon的控制层上加<code>@RefreshScope</code>支持动态刷新</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">案例：</span><br><span class="line">		方式一：在@Value注入的变量所在类上添加注解@RefreshScope</span><br><span class="line">        对应@Value注入的变量。</span><br><span class="line">        @Value(&quot;$&#123;pattern.dataformat&#125;&quot;)</span><br><span class="line">        private String dateformat;</span><br><span class="line"></span><br><span class="line">        方式二：使用@ConfigurationProperties注解(约定大于配置) 自动刷新</span><br><span class="line">        @Configurationperties(prefix=&quot;pattern&quot;)</span><br><span class="line">        public class PatternProperties&#123;</span><br><span class="line">            private String dateformat;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>7.新建coupon、member、order、product、ware五个命名空间分别保存自己的配置文件</p>
-<p>nacos说明：<br>最终方案：每个微服务创建自己的命名空间，然后使用配置分组区分环境（dev/test/prod)</p>
-<h2 id="启动服务发现"><a href="#启动服务发现" class="headerlink" title="启动服务发现"></a>启动服务发现</h2><p>1.添加依赖：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;latest.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2.配置服务提供者，从而服务提供者可以通过 Nacos 的服务注册发现功能将其服务注册到 Nacos server 上。</p>
-<p>i .在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8070 </span><br><span class="line">spring.application.name=service-provider spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
-
-
-
-<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(NacosProviderApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@RequestMapping(value = &quot;/echo/&#123;string&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">			return &quot;Hello Nacos Discovery &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li>配置服务消费者，从而服务消费者可以通过 Nacos 的服务注册发现功能从 Nacos server 上获取到它要调用的服务。</li>
-</ol>
-<p>i. 在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8080</span><br><span class="line">spring.application.name=service-consumer</span><br><span class="line"></span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
-
-<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能。给 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-resttemplate.html">RestTemplate</a> 实例添加 <code>@LoadBalanced</code> 注解，开启 <code>@LoadBalanced</code> 与 <a href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html">Ribbon</a> 的集成：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosConsumerApplication &#123;</span><br><span class="line"></span><br><span class="line">    @LoadBalanced</span><br><span class="line">    @Bean</span><br><span class="line">    public RestTemplate restTemplate() &#123;</span><br><span class="line">        return new RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(NacosConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RestController</span><br><span class="line">    public class TestController &#123;</span><br><span class="line"></span><br><span class="line">        private final RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">        @Autowired</span><br><span class="line">        public TestController(RestTemplate restTemplate) &#123;this.restTemplate = restTemplate;&#125;</span><br><span class="line"></span><br><span class="line">        @RequestMapping(value = &quot;/echo/&#123;str&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">        public String echo(@PathVariable String str) &#123;</span><br><span class="line">            return restTemplate.getForObject(&quot;http://service-provider/echo/&quot; + str, String.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>启动 <code>ProviderApplication</code> 和 <code>ConsumerApplication</code> ，调用 <code>http://localhost:8080/echo/2018</code>，返回内容为 <code>Hello Nacos Discovery 2018</code>。</li>
-</ol>
-<h1 id="服务分级存储模型"><a href="#服务分级存储模型" class="headerlink" title="服务分级存储模型"></a>服务分级存储模型</h1><h3 id="服务集群属性："><a href="#服务集群属性：" class="headerlink" title="服务集群属性："></a>服务集群属性：</h3><p>服务-&gt;集群-&gt;实例，</p>
-<p>如何修改集群属性：修改application.yml文件，添加cluster-name属性即可。</p>
-<p>1.修改application.yml ,添加如下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
-
-<p>2.在nacos控制台可以看到集群变化（集群HZ)</p>
-<h3 id="根据集群负载均衡"><a href="#根据集群负载均衡" class="headerlink" title="根据集群负载均衡"></a>根据集群负载均衡</h3><p>1.修改order-service中的application.yml，设置集群为HZ：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
-
-<p>这里orderservice是服务调用者。</p>
-<p>2.然后在order-service中设置负载均衡的IRlue为NacosRule,这个规则会优先寻找自己同集群的服务：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userservice:</span><br><span class="line">  ribbon:</span><br><span class="line">    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则</span><br></pre></td></tr></table></figure>
-
-
-
-<p>NacosRule负载均衡策略</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、会优先选择同集群服务示例列表</span><br><span class="line">2、本地集群找不到提供者，才会去其它集群寻找，并且会报警告</span><br><span class="line">3、确定了可用实例列表后，再采用随机负载均衡挑选示例</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+    <title>代码规范</title>
+    <url>/2022/11/16/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<p>参考： <a href="https://mp.weixin.qq.com/s?__biz=MzU1Nzg4NjgyMw==&mid=2247503884&idx=1&sn=6bec3003e888dcc450df335a868d4f21&chksm=fc2c6c04cb5be5121cd4f07a4ee3174e19b7718f27ff6d0c06e8fbb918f3e888c9b888cbff5a&scene=27&key=9b3cc3e1916667b5f1d57981f060580238582ca6379336de1435bb76c2b5f3d4b2245d7242be1d15d0df7cae32ac3fad8284e46dd194046b6af9874a113572340cd5e8ddb89be8bc75c8b35da2da53607089869e5437da6fa6a028e80419d641a23aae9508c5641984b3bc08ed1d12f7c5dc0060ef559ae867c7d2757f1cfc9d&ascene=7&uin=MTI4ODQxNzM5MA==&devicetype=Windows+11+x64&version=63080021&lang=zh_CN&session_us=gh_433697c99b25&exportkey=n_ChQIAhIQo3RBb0zuO3e3m8ArlcJ7MBLgAQIE97dBBAEAAAAAAJVeBrAua+QAAAAOpnltbLcz9gKNyK89dVj0CM6Cdi8QpnjG0EX7pNCrpXPTPlv+e1EMXDmL32Mz+tjUiu2DFwa2JVEcMyCsn3H/oYOZSrZfPP9yhDYG+G00MgAgZYyrRc33iaq/8rfGLb1b85hBm0imJ1qiWSeXTvsg4WRmjU4DV3HKL/08dgqbcvgOigibGN79XClARt5s4h+o7l6VKa3qXCV0evV1soH5CvN1vmmUljI5/yo5vriSFKWE2Khh3Qp1ip5MT6UJbBY3RqT7RxCjdUiI&acctmode=0&pass_ticket=Gm0pnGnWu4IjkZOm1o/voE5cVlFJrbJYg4tF3kbjDhtYiiL7Z/Lbid6wFfK26rc8&wx_header=0&fontgear=2">前同事写的代码太坑？试试这些代码技巧，用上之后绝对优雅！ (qq.com)</a></p>
 ]]></content>
       <tags>
-        <tag>Nacos SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mybatis和MybatisPlus的使用</title>
-    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>未完成…….</p>
-<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
-<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
-      <tags>
-        <tag>Mybatis MybatisPlus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot 注解大全</title>
-    <url>/2022/11/24/SpringBoot-%E6%B3%A8%E8%A7%A3%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[<p>参考1：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1772324</span><br></pre></td></tr></table></figure>
-
-
-
-<p>参考2：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1921919</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>SpringBoot 注解</tag>
+        <tag>代码规范</tag>
       </tags>
   </entry>
   <entry>
@@ -980,15 +1007,6 @@
       </tags>
   </entry>
   <entry>
-    <title>代码规范</title>
-    <url>/2022/11/16/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<p>参考： <a href="https://mp.weixin.qq.com/s?__biz=MzU1Nzg4NjgyMw==&mid=2247503884&idx=1&sn=6bec3003e888dcc450df335a868d4f21&chksm=fc2c6c04cb5be5121cd4f07a4ee3174e19b7718f27ff6d0c06e8fbb918f3e888c9b888cbff5a&scene=27&key=9b3cc3e1916667b5f1d57981f060580238582ca6379336de1435bb76c2b5f3d4b2245d7242be1d15d0df7cae32ac3fad8284e46dd194046b6af9874a113572340cd5e8ddb89be8bc75c8b35da2da53607089869e5437da6fa6a028e80419d641a23aae9508c5641984b3bc08ed1d12f7c5dc0060ef559ae867c7d2757f1cfc9d&ascene=7&uin=MTI4ODQxNzM5MA==&devicetype=Windows+11+x64&version=63080021&lang=zh_CN&session_us=gh_433697c99b25&exportkey=n_ChQIAhIQo3RBb0zuO3e3m8ArlcJ7MBLgAQIE97dBBAEAAAAAAJVeBrAua+QAAAAOpnltbLcz9gKNyK89dVj0CM6Cdi8QpnjG0EX7pNCrpXPTPlv+e1EMXDmL32Mz+tjUiu2DFwa2JVEcMyCsn3H/oYOZSrZfPP9yhDYG+G00MgAgZYyrRc33iaq/8rfGLb1b85hBm0imJ1qiWSeXTvsg4WRmjU4DV3HKL/08dgqbcvgOigibGN79XClARt5s4h+o7l6VKa3qXCV0evV1soH5CvN1vmmUljI5/yo5vriSFKWE2Khh3Qp1ip5MT6UJbBY3RqT7RxCjdUiI&acctmode=0&pass_ticket=Gm0pnGnWu4IjkZOm1o/voE5cVlFJrbJYg4tF3kbjDhtYiiL7Z/Lbid6wFfK26rc8&wx_header=0&fontgear=2">前同事写的代码太坑？试试这些代码技巧，用上之后绝对优雅！ (qq.com)</a></p>
-]]></content>
-      <tags>
-        <tag>代码规范</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机基础知识</title>
     <url>/2022/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="并发和并行："><a href="#并发和并行：" class="headerlink" title="并发和并行："></a>并发和并行：</h3><p>并发：两个任务共享时间段，比如令狐冲一个人刺瞎多人眼睛，速度很快看起来同时发生。（多线程只能并发）。</p>
@@ -1003,23 +1021,5 @@
       <tags>
         <tag>计算机基础知识</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/09/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
