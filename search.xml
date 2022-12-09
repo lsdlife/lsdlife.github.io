@@ -4,7 +4,7 @@
     <title>Git相关</title>
     <url>/2022/11/16/Git%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>git  config –global user.name “aaa” 设置用户信息</p>
-<p>git config –global user.email “<a href="mailto:&#x61;&#x61;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#x6f;&#109;">&#x61;&#x61;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#x6f;&#109;</a>“</p>
+<p>git config –global user.email “<a href="mailto:&#97;&#97;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#97;&#97;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a>“</p>
 <h2 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h2><p>git config –global user.name</p>
 <p>git config –global user.email </p>
 <h1 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h1><p>git init     初始化仓库</p>
@@ -43,8 +43,21 @@
 <p>创建新文件的时候，会自动提示add  </p>
 <p>提交（每次先进行拉取）的同时 点击推送 commit and push </p>
 ]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis和MybatisPlus的使用</title>
+    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>未完成…….</p>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
+<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
+      <tags>
+        <tag>Mybatis MybatisPlus</tag>
       </tags>
   </entry>
   <entry>
@@ -176,96 +189,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis和MybatisPlus的使用</title>
-    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>未完成…….</p>
-<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
-<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
-      <tags>
-        <tag>Mybatis MybatisPlus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nacos SpringCloud</title>
-    <url>/2022/11/24/Nacos-SpringCloud/</url>
-    <content><![CDATA[<p>未完成</p>
-<h1 id="Nacos-Spring-Cloud"><a href="#Nacos-Spring-Cloud" class="headerlink" title="Nacos Spring Cloud"></a>Nacos Spring Cloud</h1><p>安装：下载安装包 ,解压 ,bin目录下执行startup.cmd -m standlone</p>
-<h2 id="启动配置管理"><a href="#启动配置管理" class="headerlink" title="启动配置管理"></a>启动配置管理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、如何使用Nacos作为配置中心统一管理配置</span><br><span class="line">	1）、引入依赖，</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">   		&lt;groupId&gt;com.alibaba.cLoud&lt;/groupId&gt;</span><br><span class="line">   		&lt;artifactId&gt;spring-cLoud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	2）、创建一个bootstrap，properties.</span><br><span class="line">		spring.application.name=gulimall-coupon</span><br><span class="line">		spring.cLoud.nacos.config.server-addr=127.0.0.1:8848</span><br><span class="line">        </span><br><span class="line">3)需要给配置中心默认添加一个叫数据集（Data Id）gulimall-coupon，.properties。默认规则，应用名.properties</span><br><span class="line">4）、给应用名，properties添加任何配置</span><br><span class="line">5）、动态获取配置。</span><br><span class="line">	@RefreshScope：动态获取并刷新配置</span><br><span class="line">	@Value（&quot;$配置项的名&#125;&quot;）：获取到配置。</span><br><span class="line">如果配置中心和当前应用的配置文件中都配置了相同的项，优先使用配置中心的配置。</span><br><span class="line">2、细节</span><br><span class="line">	1）、命名空间：配置隔离：</span><br><span class="line">		默认：public（保留空间）；默认新增的所有配置都在public空间。</span><br><span class="line">		1、开发，测试，生产：利用命名空间来做环境隔离。</span><br><span class="line">		注意：在bootstrap，properties；配置上，需要使用哪个命名空间下的配置，</span><br><span class="line">		spring.cLoud.nacos.config.namespace=9de62e44-cd2a-4a82-bf5c-95878bd5e871</span><br><span class="line">		2、每一个微服务之间互相隔离配置，每一个微服务都创建自己的命名空间，只加载自己命名空间下的所有配置</span><br><span class="line">	2）、配置集：所有的配置的集合</span><br><span class="line">	3）、配置集ID：类似文件名。</span><br><span class="line">		Data ID:类似文件名</span><br><span class="line">	4）、配置分组：</span><br><span class="line">		默认所有的配置都属于:DEFAULT_GROUP</span><br><span class="line">		1111 618  1212 	</span><br><span class="line">项目中的使用，每个微服务创建自己的命名空间，使用配置分组区分环境，dev,test,prod</span><br><span class="line"></span><br><span class="line">3、同时加载多个配置集</span><br><span class="line">	1）、微服务任何配置信息，任何配置文件都可以放在配置中心中。</span><br><span class="line">			配置优先级：服务名-profile.yaml&gt; 服务名.yaml &gt;本地配置</span><br><span class="line">	2）、只需要在bootstrap，properties说明加载配置中心中哪些配置文件即可</span><br><span class="line">	3）、热更新： @Value，@ConfigurationProperties</span><br><span class="line">	</span><br><span class="line">以前SpringBoot任何方法从配置文件中获取值，都能使用。</span><br><span class="line">配置中心有的优先使用配置中心中的。</span><br></pre></td></tr></table></figure>
+    <title>SpringBoot 注解大全</title>
+    <url>/2022/11/24/SpringBoot-%E6%B3%A8%E8%A7%A3%E5%A4%A7%E5%85%A8/</url>
+    <content><![CDATA[<p>参考1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1772324</span><br></pre></td></tr></table></figure>
 
 
 
-<p>案例：</p>
-<p>1.common中添加依赖 nacos配置中心</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2.在coupons项目中创建/src/main/resources/bootstrap.yml，优先级别application.properties高</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line"> <span class="string">//案例：</span></span><br><span class="line">    <span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line">    <span class="attr">spring:</span></span><br><span class="line">      <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">gulimall-coupon</span>  <span class="comment">#服务名称</span></span><br><span class="line">      <span class="attr">profiles:</span></span><br><span class="line">        <span class="attr">active:</span> <span class="string">dev</span> <span class="comment">#开发环境，这里是dev</span></span><br><span class="line">      <span class="attr">cloud:</span></span><br><span class="line">        <span class="attr">nacos:</span></span><br><span class="line">          <span class="attr">config:</span></span><br><span class="line">            <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment">#nacos地址</span></span><br><span class="line">            <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 指定配置文件为yaml格式</span></span><br><span class="line"><span class="string">//服务名-环境-后缀名就是data</span> <span class="string">ID</span></span><br></pre></td></tr></table></figure>
-
-<p>3、浏览器去nacos里的配置列表，点击＋号，data ID：<code>gulimall-coupon.yaml</code>，配置</p>
-<p>4.在controller中编写测试代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Value(&quot;$&#123;coupon.user.name&#125;&quot;)</span><br><span class="line">private String name;</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;coupon.user.age&#125;&quot;)</span><br><span class="line">private int age;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/nacos&quot;)</span><br><span class="line">public R nacos()&#123;</span><br><span class="line">    return R.ok().put(&quot;name&quot;, name).put(&quot;age&quot;, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>5.测试</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:7000/coupon/coupon/nacos</span><br></pre></td></tr></table></figure>
-
-<p>6.在coupon的控制层上加<code>@RefreshScope</code>支持动态刷新</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">案例：</span><br><span class="line">		方式一：在@Value注入的变量所在类上添加注解@RefreshScope</span><br><span class="line">        对应@Value注入的变量。</span><br><span class="line">        @Value(&quot;$&#123;pattern.dataformat&#125;&quot;)</span><br><span class="line">        private String dateformat;</span><br><span class="line"></span><br><span class="line">        方式二：使用@ConfigurationProperties注解(约定大于配置) 自动刷新</span><br><span class="line">        @Configurationperties(prefix=&quot;pattern&quot;)</span><br><span class="line">        public class PatternProperties&#123;</span><br><span class="line">            private String dateformat;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>7.新建coupon、member、order、product、ware五个命名空间分别保存自己的配置文件</p>
-<p>nacos说明：<br>最终方案：每个微服务创建自己的命名空间，然后使用配置分组区分环境（dev/test/prod)</p>
-<h2 id="启动服务发现"><a href="#启动服务发现" class="headerlink" title="启动服务发现"></a>启动服务发现</h2><p>1.添加依赖：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;latest.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2.配置服务提供者，从而服务提供者可以通过 Nacos 的服务注册发现功能将其服务注册到 Nacos server 上。</p>
-<p>i .在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8070 </span><br><span class="line">spring.application.name=service-provider spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
-
-
-
-<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(NacosProviderApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@RequestMapping(value = &quot;/echo/&#123;string&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">			return &quot;Hello Nacos Discovery &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li>配置服务消费者，从而服务消费者可以通过 Nacos 的服务注册发现功能从 Nacos server 上获取到它要调用的服务。</li>
-</ol>
-<p>i. 在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8080</span><br><span class="line">spring.application.name=service-consumer</span><br><span class="line"></span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
-
-<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能。给 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-resttemplate.html">RestTemplate</a> 实例添加 <code>@LoadBalanced</code> 注解，开启 <code>@LoadBalanced</code> 与 <a href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html">Ribbon</a> 的集成：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosConsumerApplication &#123;</span><br><span class="line"></span><br><span class="line">    @LoadBalanced</span><br><span class="line">    @Bean</span><br><span class="line">    public RestTemplate restTemplate() &#123;</span><br><span class="line">        return new RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(NacosConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RestController</span><br><span class="line">    public class TestController &#123;</span><br><span class="line"></span><br><span class="line">        private final RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">        @Autowired</span><br><span class="line">        public TestController(RestTemplate restTemplate) &#123;this.restTemplate = restTemplate;&#125;</span><br><span class="line"></span><br><span class="line">        @RequestMapping(value = &quot;/echo/&#123;str&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">        public String echo(@PathVariable String str) &#123;</span><br><span class="line">            return restTemplate.getForObject(&quot;http://service-provider/echo/&quot; + str, String.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>启动 <code>ProviderApplication</code> 和 <code>ConsumerApplication</code> ，调用 <code>http://localhost:8080/echo/2018</code>，返回内容为 <code>Hello Nacos Discovery 2018</code>。</li>
-</ol>
-<h1 id="服务分级存储模型"><a href="#服务分级存储模型" class="headerlink" title="服务分级存储模型"></a>服务分级存储模型</h1><h3 id="服务集群属性："><a href="#服务集群属性：" class="headerlink" title="服务集群属性："></a>服务集群属性：</h3><p>服务-&gt;集群-&gt;实例，</p>
-<p>如何修改集群属性：修改application.yml文件，添加cluster-name属性即可。</p>
-<p>1.修改application.yml ,添加如下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
-
-<p>2.在nacos控制台可以看到集群变化（集群HZ)</p>
-<h3 id="根据集群负载均衡"><a href="#根据集群负载均衡" class="headerlink" title="根据集群负载均衡"></a>根据集群负载均衡</h3><p>1.修改order-service中的application.yml，设置集群为HZ：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
-
-<p>这里orderservice是服务调用者。</p>
-<p>2.然后在order-service中设置负载均衡的IRlue为NacosRule,这个规则会优先寻找自己同集群的服务：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userservice:</span><br><span class="line">  ribbon:</span><br><span class="line">    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则</span><br></pre></td></tr></table></figure>
-
-
-
-<p>NacosRule负载均衡策略</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、会优先选择同集群服务示例列表</span><br><span class="line">2、本地集群找不到提供者，才会去其它集群寻找，并且会报警告</span><br><span class="line">3、确定了可用实例列表后，再采用随机负载均衡挑选示例</span><br></pre></td></tr></table></figure>
-
-
-
-
+<p>参考2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1921919</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
-        <tag>Nacos SpringCloud</tag>
+        <tag>SpringBoot 注解</tag>
       </tags>
   </entry>
   <entry>
@@ -897,19 +833,86 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot 注解大全</title>
-    <url>/2022/11/24/SpringBoot-%E6%B3%A8%E8%A7%A3%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[<p>参考1：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1772324</span><br></pre></td></tr></table></figure>
+    <title>Nacos SpringCloud</title>
+    <url>/2022/11/24/Nacos-SpringCloud/</url>
+    <content><![CDATA[<p>未完成</p>
+<h1 id="Nacos-Spring-Cloud"><a href="#Nacos-Spring-Cloud" class="headerlink" title="Nacos Spring Cloud"></a>Nacos Spring Cloud</h1><p>安装：下载安装包 ,解压 ,bin目录下执行startup.cmd -m standlone</p>
+<h2 id="启动配置管理"><a href="#启动配置管理" class="headerlink" title="启动配置管理"></a>启动配置管理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、如何使用Nacos作为配置中心统一管理配置</span><br><span class="line">	1）、引入依赖，</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">   		&lt;groupId&gt;com.alibaba.cLoud&lt;/groupId&gt;</span><br><span class="line">   		&lt;artifactId&gt;spring-cLoud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	2）、创建一个bootstrap，properties.</span><br><span class="line">		spring.application.name=gulimall-coupon</span><br><span class="line">		spring.cLoud.nacos.config.server-addr=127.0.0.1:8848</span><br><span class="line">        </span><br><span class="line">3)需要给配置中心默认添加一个叫数据集（Data Id）gulimall-coupon，.properties。默认规则，应用名.properties</span><br><span class="line">4）、给应用名，properties添加任何配置</span><br><span class="line">5）、动态获取配置。</span><br><span class="line">	@RefreshScope：动态获取并刷新配置</span><br><span class="line">	@Value（&quot;$配置项的名&#125;&quot;）：获取到配置。</span><br><span class="line">如果配置中心和当前应用的配置文件中都配置了相同的项，优先使用配置中心的配置。</span><br><span class="line">2、细节</span><br><span class="line">	1）、命名空间：配置隔离：</span><br><span class="line">		默认：public（保留空间）；默认新增的所有配置都在public空间。</span><br><span class="line">		1、开发，测试，生产：利用命名空间来做环境隔离。</span><br><span class="line">		注意：在bootstrap，properties；配置上，需要使用哪个命名空间下的配置，</span><br><span class="line">		spring.cLoud.nacos.config.namespace=9de62e44-cd2a-4a82-bf5c-95878bd5e871</span><br><span class="line">		2、每一个微服务之间互相隔离配置，每一个微服务都创建自己的命名空间，只加载自己命名空间下的所有配置</span><br><span class="line">	2）、配置集：所有的配置的集合</span><br><span class="line">	3）、配置集ID：类似文件名。</span><br><span class="line">		Data ID:类似文件名</span><br><span class="line">	4）、配置分组：</span><br><span class="line">		默认所有的配置都属于:DEFAULT_GROUP</span><br><span class="line">		1111 618  1212 	</span><br><span class="line">项目中的使用，每个微服务创建自己的命名空间，使用配置分组区分环境，dev,test,prod</span><br><span class="line"></span><br><span class="line">3、同时加载多个配置集</span><br><span class="line">	1）、微服务任何配置信息，任何配置文件都可以放在配置中心中。</span><br><span class="line">			配置优先级：服务名-profile.yaml&gt; 服务名.yaml &gt;本地配置</span><br><span class="line">	2）、只需要在bootstrap，properties说明加载配置中心中哪些配置文件即可</span><br><span class="line">	3）、热更新： @Value，@ConfigurationProperties</span><br><span class="line">	</span><br><span class="line">以前SpringBoot任何方法从配置文件中获取值，都能使用。</span><br><span class="line">配置中心有的优先使用配置中心中的。</span><br></pre></td></tr></table></figure>
 
 
 
-<p>参考2：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://cloud.tencent.com/developer/article/1921919</span><br></pre></td></tr></table></figure>
+<p>案例：</p>
+<p>1.common中添加依赖 nacos配置中心</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.在coupons项目中创建/src/main/resources/bootstrap.yml，优先级别application.properties高</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line"> <span class="string">//案例：</span></span><br><span class="line">    <span class="comment"># 改名字，对应nacos里的配置文件名</span></span><br><span class="line">    <span class="attr">spring:</span></span><br><span class="line">      <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">gulimall-coupon</span>  <span class="comment">#服务名称</span></span><br><span class="line">      <span class="attr">profiles:</span></span><br><span class="line">        <span class="attr">active:</span> <span class="string">dev</span> <span class="comment">#开发环境，这里是dev</span></span><br><span class="line">      <span class="attr">cloud:</span></span><br><span class="line">        <span class="attr">nacos:</span></span><br><span class="line">          <span class="attr">config:</span></span><br><span class="line">            <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment">#nacos地址</span></span><br><span class="line">            <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 指定配置文件为yaml格式</span></span><br><span class="line"><span class="string">//服务名-环境-后缀名就是data</span> <span class="string">ID</span></span><br></pre></td></tr></table></figure>
+
+<p>3、浏览器去nacos里的配置列表，点击＋号，data ID：<code>gulimall-coupon.yaml</code>，配置</p>
+<p>4.在controller中编写测试代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Value(&quot;$&#123;coupon.user.name&#125;&quot;)</span><br><span class="line">private String name;</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;coupon.user.age&#125;&quot;)</span><br><span class="line">private int age;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/nacos&quot;)</span><br><span class="line">public R nacos()&#123;</span><br><span class="line">    return R.ok().put(&quot;name&quot;, name).put(&quot;age&quot;, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.测试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:7000/coupon/coupon/nacos</span><br></pre></td></tr></table></figure>
+
+<p>6.在coupon的控制层上加<code>@RefreshScope</code>支持动态刷新</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">案例：</span><br><span class="line">		方式一：在@Value注入的变量所在类上添加注解@RefreshScope</span><br><span class="line">        对应@Value注入的变量。</span><br><span class="line">        @Value(&quot;$&#123;pattern.dataformat&#125;&quot;)</span><br><span class="line">        private String dateformat;</span><br><span class="line"></span><br><span class="line">        方式二：使用@ConfigurationProperties注解(约定大于配置) 自动刷新</span><br><span class="line">        @Configurationperties(prefix=&quot;pattern&quot;)</span><br><span class="line">        public class PatternProperties&#123;</span><br><span class="line">            private String dateformat;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>7.新建coupon、member、order、product、ware五个命名空间分别保存自己的配置文件</p>
+<p>nacos说明：<br>最终方案：每个微服务创建自己的命名空间，然后使用配置分组区分环境（dev/test/prod)</p>
+<h2 id="启动服务发现"><a href="#启动服务发现" class="headerlink" title="启动服务发现"></a>启动服务发现</h2><p>1.添加依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;latest.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.配置服务提供者，从而服务提供者可以通过 Nacos 的服务注册发现功能将其服务注册到 Nacos server 上。</p>
+<p>i .在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8070 </span><br><span class="line">spring.application.name=service-provider spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
+
+
+
+<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(NacosProviderApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@RequestMapping(value = &quot;/echo/&#123;string&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">			return &quot;Hello Nacos Discovery &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>配置服务消费者，从而服务消费者可以通过 Nacos 的服务注册发现功能从 Nacos server 上获取到它要调用的服务。</li>
+</ol>
+<p>i. 在 <code>application.properties</code> 中配置 Nacos server 的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8080</span><br><span class="line">spring.application.name=service-consumer</span><br><span class="line"></span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br></pre></td></tr></table></figure>
+
+<p>ii. 通过 Spring Cloud 原生注解 <code>@EnableDiscoveryClient</code> 开启服务注册发现功能。给 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-resttemplate.html">RestTemplate</a> 实例添加 <code>@LoadBalanced</code> 注解，开启 <code>@LoadBalanced</code> 与 <a href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html">Ribbon</a> 的集成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class NacosConsumerApplication &#123;</span><br><span class="line"></span><br><span class="line">    @LoadBalanced</span><br><span class="line">    @Bean</span><br><span class="line">    public RestTemplate restTemplate() &#123;</span><br><span class="line">        return new RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(NacosConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RestController</span><br><span class="line">    public class TestController &#123;</span><br><span class="line"></span><br><span class="line">        private final RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">        @Autowired</span><br><span class="line">        public TestController(RestTemplate restTemplate) &#123;this.restTemplate = restTemplate;&#125;</span><br><span class="line"></span><br><span class="line">        @RequestMapping(value = &quot;/echo/&#123;str&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">        public String echo(@PathVariable String str) &#123;</span><br><span class="line">            return restTemplate.getForObject(&quot;http://service-provider/echo/&quot; + str, String.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>启动 <code>ProviderApplication</code> 和 <code>ConsumerApplication</code> ，调用 <code>http://localhost:8080/echo/2018</code>，返回内容为 <code>Hello Nacos Discovery 2018</code>。</li>
+</ol>
+<h1 id="服务分级存储模型"><a href="#服务分级存储模型" class="headerlink" title="服务分级存储模型"></a>服务分级存储模型</h1><h3 id="服务集群属性："><a href="#服务集群属性：" class="headerlink" title="服务集群属性："></a>服务集群属性：</h3><p>服务-&gt;集群-&gt;实例，</p>
+<p>如何修改集群属性：修改application.yml文件，添加cluster-name属性即可。</p>
+<p>1.修改application.yml ,添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
+
+<p>2.在nacos控制台可以看到集群变化（集群HZ)</p>
+<h3 id="根据集群负载均衡"><a href="#根据集群负载均衡" class="headerlink" title="根据集群负载均衡"></a>根据集群负载均衡</h3><p>1.修改order-service中的application.yml，设置集群为HZ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">    cloud:</span><br><span class="line">        nacos:</span><br><span class="line">            server-addr: localhost:8848 #nacos服务端地址</span><br><span class="line">            discovery:</span><br><span class="line">                cluster-name: HZ #配置集群名称，也就是机房位置，例如：HZ，杭州</span><br></pre></td></tr></table></figure>
+
+<p>这里orderservice是服务调用者。</p>
+<p>2.然后在order-service中设置负载均衡的IRlue为NacosRule,这个规则会优先寻找自己同集群的服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userservice:</span><br><span class="line">  ribbon:</span><br><span class="line">    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NacosRule负载均衡策略</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、会优先选择同集群服务示例列表</span><br><span class="line">2、本地集群找不到提供者，才会去其它集群寻找，并且会报警告</span><br><span class="line">3、确定了可用实例列表后，再采用随机负载均衡挑选示例</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 ]]></content>
       <tags>
-        <tag>SpringBoot 注解</tag>
+        <tag>Nacos SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -995,6 +998,15 @@
       </tags>
   </entry>
   <entry>
+    <title>代码规范</title>
+    <url>/2022/11/16/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<p>参考： <a href="https://mp.weixin.qq.com/s?__biz=MzU1Nzg4NjgyMw==&mid=2247503884&idx=1&sn=6bec3003e888dcc450df335a868d4f21&chksm=fc2c6c04cb5be5121cd4f07a4ee3174e19b7718f27ff6d0c06e8fbb918f3e888c9b888cbff5a&scene=27&key=9b3cc3e1916667b5f1d57981f060580238582ca6379336de1435bb76c2b5f3d4b2245d7242be1d15d0df7cae32ac3fad8284e46dd194046b6af9874a113572340cd5e8ddb89be8bc75c8b35da2da53607089869e5437da6fa6a028e80419d641a23aae9508c5641984b3bc08ed1d12f7c5dc0060ef559ae867c7d2757f1cfc9d&ascene=7&uin=MTI4ODQxNzM5MA==&devicetype=Windows+11+x64&version=63080021&lang=zh_CN&session_us=gh_433697c99b25&exportkey=n_ChQIAhIQo3RBb0zuO3e3m8ArlcJ7MBLgAQIE97dBBAEAAAAAAJVeBrAua+QAAAAOpnltbLcz9gKNyK89dVj0CM6Cdi8QpnjG0EX7pNCrpXPTPlv+e1EMXDmL32Mz+tjUiu2DFwa2JVEcMyCsn3H/oYOZSrZfPP9yhDYG+G00MgAgZYyrRc33iaq/8rfGLb1b85hBm0imJ1qiWSeXTvsg4WRmjU4DV3HKL/08dgqbcvgOigibGN79XClARt5s4h+o7l6VKa3qXCV0evV1soH5CvN1vmmUljI5/yo5vriSFKWE2Khh3Qp1ip5MT6UJbBY3RqT7RxCjdUiI&acctmode=0&pass_ticket=Gm0pnGnWu4IjkZOm1o/voE5cVlFJrbJYg4tF3kbjDhtYiiL7Z/Lbid6wFfK26rc8&wx_header=0&fontgear=2">前同事写的代码太坑？试试这些代码技巧，用上之后绝对优雅！ (qq.com)</a></p>
+]]></content>
+      <tags>
+        <tag>代码规范</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机基础知识</title>
     <url>/2022/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="并发和并行："><a href="#并发和并行：" class="headerlink" title="并发和并行："></a>并发和并行：</h3><p>并发：两个任务共享时间段，比如令狐冲一个人刺瞎多人眼睛，速度很快看起来同时发生。（多线程只能并发）。</p>
@@ -1008,15 +1020,6 @@
 ]]></content>
       <tags>
         <tag>计算机基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码规范</title>
-    <url>/2022/11/16/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<p>参考： <a href="https://mp.weixin.qq.com/s?__biz=MzU1Nzg4NjgyMw==&mid=2247503884&idx=1&sn=6bec3003e888dcc450df335a868d4f21&chksm=fc2c6c04cb5be5121cd4f07a4ee3174e19b7718f27ff6d0c06e8fbb918f3e888c9b888cbff5a&scene=27&key=9b3cc3e1916667b5f1d57981f060580238582ca6379336de1435bb76c2b5f3d4b2245d7242be1d15d0df7cae32ac3fad8284e46dd194046b6af9874a113572340cd5e8ddb89be8bc75c8b35da2da53607089869e5437da6fa6a028e80419d641a23aae9508c5641984b3bc08ed1d12f7c5dc0060ef559ae867c7d2757f1cfc9d&ascene=7&uin=MTI4ODQxNzM5MA==&devicetype=Windows+11+x64&version=63080021&lang=zh_CN&session_us=gh_433697c99b25&exportkey=n_ChQIAhIQo3RBb0zuO3e3m8ArlcJ7MBLgAQIE97dBBAEAAAAAAJVeBrAua+QAAAAOpnltbLcz9gKNyK89dVj0CM6Cdi8QpnjG0EX7pNCrpXPTPlv+e1EMXDmL32Mz+tjUiu2DFwa2JVEcMyCsn3H/oYOZSrZfPP9yhDYG+G00MgAgZYyrRc33iaq/8rfGLb1b85hBm0imJ1qiWSeXTvsg4WRmjU4DV3HKL/08dgqbcvgOigibGN79XClARt5s4h+o7l6VKa3qXCV0evV1soH5CvN1vmmUljI5/yo5vriSFKWE2Khh3Qp1ip5MT6UJbBY3RqT7RxCjdUiI&acctmode=0&pass_ticket=Gm0pnGnWu4IjkZOm1o/voE5cVlFJrbJYg4tF3kbjDhtYiiL7Z/Lbid6wFfK26rc8&wx_header=0&fontgear=2">前同事写的代码太坑？试试这些代码技巧，用上之后绝对优雅！ (qq.com)</a></p>
-]]></content>
-      <tags>
-        <tag>代码规范</tag>
       </tags>
   </entry>
 </search>
