@@ -138,6 +138,56 @@
       </tags>
   </entry>
   <entry>
+    <title>Git相关</title>
+    <url>/2022/11/16/Git%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>git  config –global user.name “aaa” 设置用户信息</p>
+<p>git config –global user.email “<a href="mailto:&#x61;&#x61;&#x40;&#x31;&#x36;&#x33;&#46;&#99;&#111;&#x6d;">&#x61;&#x61;&#x40;&#x31;&#x36;&#x33;&#46;&#99;&#111;&#x6d;</a>“</p>
+<h2 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h2><p>git config –global user.name</p>
+<p>git config –global user.email </p>
+<h1 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h1><p>git init     初始化仓库</p>
+<p>git commit    提交到本地仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --m &#x27;update file01&#x27;	将修改提交到本地仓库，提交记录为update file01</span><br></pre></td></tr></table></figure>
+
+<p>git add .    加入暂存区  </p>
+<p>git reset     取消暂存</p>
+<p>git status     查看修改的状态</p>
+<p>git log     查看提交日志</p>
+<p>git reset –hard  commitID       版本回退(commitID可以用git-log 或git log查看)</p>
+<p>git reflog     查看已删除的记录</p>
+<p>git remote     查看远程仓库( 如果是origin就是连接到了远程仓库)</p>
+<p>git remote add &lt;远端名称&gt; &lt;仓库路径&gt;  添加远程仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:lsdlife/JavaBase.git</span><br></pre></td></tr></table></figure>
+
+<p>git clone  * 从远程仓库克隆</p>
+<p>git pull （orgin master)从远程仓库拉取</p>
+<p>git push  orgin master 推送到远程仓库</p>
+<p>git branch 查看本地分支</p>
+<p>git branch * 创建本地分支</p>
+<p>git branch -r 列出所有远程分支</p>
+<p>git branch -a 列出所有本地分支和远程分支</p>
+<p>git checkout * 切换分支</p>
+<p>git checkout -b * 直接切换到一个不存在的分支（创建并切换）</p>
+<p>git branch -d  *     删除分支，需要做各种检查</p>
+<p>git branch -D *      不做任何检查，强制删除</p>
+<p>git push origin * 推送至远程仓库分支</p>
+<p>git merge * 合并分支</p>
+<h1 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h1><p>1.解决文件中冲突的地方</p>
+<p>2.将解决完冲突的文件中加入暂存区（add)</p>
+<p>3.提交到仓库（commit)</p>
+<h1 id="idea-界面"><a href="#idea-界面" class="headerlink" title="idea 界面"></a>idea 界面</h1><p>Terminal界面输入相关指令。</p>
+<p> get from version control </p>
+<p>创建分支 new branch   </p>
+<p>创建新文件的时候，会自动提示add  </p>
+<p>提交（每次先进行拉取）的同时 点击推送 commit and push </p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nacos SpringCloud</title>
     <url>/2022/11/24/Nacos-SpringCloud/</url>
     <content><![CDATA[<p>未完成</p>
@@ -218,195 +268,6 @@
 ]]></content>
       <tags>
         <tag>Nacos SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git相关</title>
-    <url>/2022/11/16/Git%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>git  config –global user.name “aaa” 设置用户信息</p>
-<p>git config –global user.email “<a href="mailto:&#x61;&#x61;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#x6d;">&#x61;&#x61;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#x6d;</a>“</p>
-<h2 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h2><p>git config –global user.name</p>
-<p>git config –global user.email </p>
-<h1 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h1><p>git init     初始化仓库</p>
-<p>git commit    提交到本地仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --m &#x27;update file01&#x27;	将修改提交到本地仓库，提交记录为update file01</span><br></pre></td></tr></table></figure>
-
-<p>git add .    加入暂存区  </p>
-<p>git reset     取消暂存</p>
-<p>git status     查看修改的状态</p>
-<p>git log     查看提交日志</p>
-<p>git reset –hard  commitID       版本回退(commitID可以用git-log 或git log查看)</p>
-<p>git reflog     查看已删除的记录</p>
-<p>git remote     查看远程仓库( 如果是origin就是连接到了远程仓库)</p>
-<p>git remote add &lt;远端名称&gt; &lt;仓库路径&gt;  添加远程仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:lsdlife/JavaBase.git</span><br></pre></td></tr></table></figure>
-
-<p>git clone  * 从远程仓库克隆</p>
-<p>git pull （orgin master)从远程仓库拉取</p>
-<p>git push  orgin master 推送到远程仓库</p>
-<p>git branch 查看本地分支</p>
-<p>git branch * 创建本地分支</p>
-<p>git branch -r 列出所有远程分支</p>
-<p>git branch -a 列出所有本地分支和远程分支</p>
-<p>git checkout * 切换分支</p>
-<p>git checkout -b * 直接切换到一个不存在的分支（创建并切换）</p>
-<p>git branch -d  *     删除分支，需要做各种检查</p>
-<p>git branch -D *      不做任何检查，强制删除</p>
-<p>git push origin * 推送至远程仓库分支</p>
-<p>git merge * 合并分支</p>
-<h1 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h1><p>1.解决文件中冲突的地方</p>
-<p>2.将解决完冲突的文件中加入暂存区（add)</p>
-<p>3.提交到仓库（commit)</p>
-<h1 id="idea-界面"><a href="#idea-界面" class="headerlink" title="idea 界面"></a>idea 界面</h1><p>Terminal界面输入相关指令。</p>
-<p> get from version control </p>
-<p>创建分支 new branch   </p>
-<p>创建新文件的时候，会自动提示add  </p>
-<p>提交（每次先进行拉取）的同时 点击推送 commit and push </p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mybatis和MybatisPlus的使用</title>
-    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>未完成…….</p>
-<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
-<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
-      <tags>
-        <tag>Mybatis MybatisPlus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenFeign</title>
-    <url>/2022/12/14/OpenFeign/</url>
-    <content><![CDATA[<p>未完成</p>
-<p>声明式远程调用</p>
-<p>feign是一个声明式的HTTP客户端，他的目的就是让远程调用更加简单。给远程服务发的是HTTP请求。</p>
-<p>会员服务想要远程调用优惠券服务，只需要给会员服务里引入openfeign依赖，他就有了远程调用其他服务的能力。</p>
-<p>1.引入依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2.演示member服务调用coupon服务</p>
-<p>在gulimall-coupon中的CouponController中添加测试方法</p>
-<pre><code>@RequestMapping(&quot;/member/list&quot;)
-public R membercoupons()&#123;    //全系统的所有返回都返回R
-    // 模拟去数据库查用户对于的优惠券
-    CouponEntity couponEntity = new CouponEntity();
-    couponEntity.setCouponName(&quot;满100-10&quot;);//优惠券的名字
-    return R.ok().put(&quot;coupons&quot;,Arrays.asList(couponEntity));
-&#125;
-</code></pre>
-<p>在member的主启动类上加注解@EnableDiscoveryClient，告诉member是一个远程调用客户端，member要调用东西的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableDiscoveryClient</span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableFeignClients(basePackages=&quot;com.xmh.gulimall.member.feign&quot;)//扫描接口方法注解</span><br><span class="line">public class GulimallMemberApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(GulimallMemberApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在com.xmh.gulimall.member.feign中新建接口CouponFeignService</p>
-<pre><code>@FeignClient(&quot;gulimall-coupon&quot;)//告诉spring cloud这个接口是一个远程客户端，要调用coupon服务(nacos中找到)
-public interface CouponFeignService &#123;
-// 远程服务的url
-@RequestMapping(&quot;/coupon/coupon/member/list&quot;)//注意写全优惠券类上还有映射
-public R membercoupons();//得到一个R对象
-&#125;
-</code></pre>
-<p>在member的MemberController写一个测试</p>
-<pre><code>@Autowired
-private CouponFeignService couponFeignService; //注入刚才的CouponFeignService接口
-
-@RequestMapping(&quot;/coupons&quot;)
-public R coupons()&#123;
-    MemberEntity memberEntity = new MemberEntity();
-    memberEntity.setNickname(&quot;会员昵称张三&quot;);
-    R membercoupons = couponFeignService.membercoupons();
-
-    return R.ok().put(&quot;member&quot;, memberEntity).put(&quot;coupons&quot;, membercoupons.get(&quot;coupons&quot;));
-&#125;
-</code></pre>
-<h2 id="Http客户端-Feign"><a href="#Http客户端-Feign" class="headerlink" title="Http客户端 Feign"></a>Http客户端 Feign</h2><p>主要是用来替换如下的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//2利用RestTemplate发起http请求，查询用户</span><br><span class="line">//2.1 url路径</span><br><span class="line">String url=&quot;http://userservice/user/&quot;+order.getUserId();</span><br><span class="line">//2.2 发送http请求，实现远程调用</span><br><span class="line">User user=restTemplate.getForObject(url,User.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>注意:feign是微服务内部之间直接调用。</p>
-<h3 id="定义和使用"><a href="#定义和使用" class="headerlink" title="定义和使用"></a>定义和使用</h3><p>使用Feign的步骤如下：</p>
-<p>1.调用发出者引入openfeign依赖 </p>
-<p>2.调用发出者添加注解开启Feign的功能</p>
-<p>@EnableFeignClients</p>
-<p>3.编写Feignk客户端</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@FeignClient(&quot;userservice&quot;)  #指定服务名称，一般是服务提供者，用来发送http请求</span><br><span class="line">public interface UserClient&#123;</span><br><span class="line">	@GetMapping(&quot;/user/&#123;id&#125;&quot;)	#可变</span><br><span class="line">	User findById(@PathVarliable (&quot;id&quot;) Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>想要远程调用别的服务：</p>
-<p>1）引入open-feign</p>
-<p>2）编写一个接口，告诉springcloud这个接口需要调用原创服务</p>
-<p>​        1）声明接口的每一个方法都是调用哪个远程服务的那个请求</p>
-<p>3）。开启远程调用功能</p>
-<p>主要是基于SpringMVC的注解来声明远程调用的信息，比如：</p>
-<p>服务名称：userservice</p>
-<p>请求方式：GET</p>
-<p>请求路径：/user/{id}</p>
-<p>请求参数：Long id</p>
-<p>返回值类型：User</p>
-<h3 id="配置Feign日志"><a href="#配置Feign日志" class="headerlink" title="配置Feign日志"></a>配置Feign日志</h3><p>1.全局生效</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">feign:</span><br><span class="line"> client:</span><br><span class="line">  config:</span><br><span class="line">   default: #这里用default就是全局配置，如果写服务名称，则是针对某个微服务的配置 如改成userservice</span><br><span class="line">   loggerLevel:FULL #日志级别</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="自定义Feign的配置"><a href="#自定义Feign的配置" class="headerlink" title="自定义Feign的配置"></a>自定义Feign的配置</h3><p>走Java代码方式，需要先声明一个Bean</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class FeignClientConfiguration&#123;</span><br><span class="line">	@Bean </span><br><span class="line">	public Logger.Level.feignLogLevel()&#123;</span><br><span class="line">		return Logger.Level.BASIC;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>1.而后如果是全局配置，则把它放到@EnableFeignClients这个注解中</p>
-<p>(就是放在该启动类上)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(defaultConfiguration=FeignClientConfiguration.class)</span><br></pre></td></tr></table></figure>
-
-<p>2.如果是局部配置，则把它放到@FeignClient这个注解中</p>
-<p>(就是放在之前UserClient那的地方)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@FeignClient(value=&quot;userservice&quot;,configuration=FeignClientConfiguration.class)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="Feign的性能优化"><a href="#Feign的性能优化" class="headerlink" title="Feign的性能优化"></a>Feign的性能优化</h3><p>Feign添加HttpClient的支持</p>
-<p>引入依赖：feign-httpClient</p>
-<p>配置连接池：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">feign:</span><br><span class="line"> client:</span><br><span class="line">  config:</span><br><span class="line">   default: #default全局的配置</span><br><span class="line">    loggerlevel:BASIC #日志级别,BASIC就是基本的请求和相应消息</span><br><span class="line"> httpclient:</span><br><span class="line">  enabled:true #开启feign对HttpClient的支持</span><br><span class="line">  max-connections:200 #最大的连接数</span><br><span class="line">  max-connections-per-route:50 #每个路径的最大连接数</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Feign的最佳实践"><a href="#Feign的最佳实践" class="headerlink" title="Feign的最佳实践"></a>Feign的最佳实践</h3><p>方式一： （继承）</p>
-<p>给消费者的FeignClient和提供者的controller定义统一的父接口作为标准。(有紧耦合问题)</p>
-<p>方案二：(抽取)：</p>
-<p>将FeignClient抽取为独立模块，并且把接口有关的POJO,默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
-<p>(使用的时候引依赖)</p>
-<p>实现步骤：</p>
-<p>1.首先创建一个module,命名为feign-api,然后引入feign的starter依赖</p>
-<p>2.将order-service中编写的UserClient，User,DefaultFeignConfiguration都复制到feign-api项目中。</p>
-<p>3.在order-service中引入feign-api的依赖</p>
-<p>4.修改order-service中的所有与上述三个组件有关的import部分，改成导入feign-api中的包</p>
-<p>5.重启测试</p>
-<p>此时定义的FeignClient不在SpringBootApplication的扫描包范围时，这些FeignClient无法使用，有两种方式解决：</p>
-<p>方式一：指定FeignClient所在包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(basePackages=&quot;cn.itcast.feign.clients&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>方式二：指定FeignClient字节码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(clients=&#123;UserClient.class&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>OpenFeign</tag>
       </tags>
   </entry>
   <entry>
@@ -1054,22 +915,6 @@ public R coupons()&#123;
       </tags>
   </entry>
   <entry>
-    <title>计算机基础知识</title>
-    <url>/2022/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="并发和并行："><a href="#并发和并行：" class="headerlink" title="并发和并行："></a>并发和并行：</h3><p>并发：两个任务共享时间段，比如令狐冲一个人刺瞎多人眼睛，速度很快看起来同时发生。（多线程只能并发）。</p>
-<p>并行：两个任务同一时间发生，比如多人运动，这是真正意义上同时发生的。（进程之间可以并行）。</p>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="两个栈实现一个队列"><a href="#两个栈实现一个队列" class="headerlink" title="两个栈实现一个队列"></a>两个栈实现一个队列</h4><p>要求栈s1，s2,实现队列的先进先出，因栈是先入后出。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.入队：直接压入s1。</span><br><span class="line">2.出队：若s2不空，弹出s2栈顶元素；若空，把s1的所有元素全部弹出压入s2，（此时和元素原始顺序一致）再弹出s2的栈顶元素（删一个或者多个）。</span><br></pre></td></tr></table></figure>
-
-
-
-<p>其余参考：<a href="http://topjavaer.cn/computer-basic/network.html#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">程序员大彬 (topjavaer.cn)</a></p>
-]]></content>
-      <tags>
-        <tag>计算机基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下新建hexo博客</title>
     <url>/2022/11/09/windows%E4%B8%8B%E6%96%B0%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><h3 id="1-1-安装node-js"><a href="#1-1-安装node-js" class="headerlink" title="1.1 安装node.js"></a>1.1 安装node.js</h3><p>官网下载node.js，傻瓜式安装成功后使用cmd使用下列命令查看。</p>
@@ -1131,6 +976,161 @@ public R coupons()&#123;
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenFeign</title>
+    <url>/2022/12/14/OpenFeign/</url>
+    <content><![CDATA[<p>未完成</p>
+<p>声明式远程调用</p>
+<p>feign是一个声明式的HTTP客户端，他的目的就是让远程调用更加简单。给远程服务发的是HTTP请求。</p>
+<p>会员服务想要远程调用优惠券服务，只需要给会员服务里引入openfeign依赖，他就有了远程调用其他服务的能力。</p>
+<p>1.引入依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.演示member服务调用coupon服务</p>
+<p>在gulimall-coupon中的CouponController中添加测试方法</p>
+<pre><code>@RequestMapping(&quot;/member/list&quot;)
+public R membercoupons()&#123;    //全系统的所有返回都返回R
+    // 模拟去数据库查用户对于的优惠券
+    CouponEntity couponEntity = new CouponEntity();
+    couponEntity.setCouponName(&quot;满100-10&quot;);//优惠券的名字
+    return R.ok().put(&quot;coupons&quot;,Arrays.asList(couponEntity));
+&#125;
+</code></pre>
+<p>在member的主启动类上加注解@EnableDiscoveryClient，告诉member是一个远程调用客户端，member要调用东西的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableDiscoveryClient</span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableFeignClients(basePackages=&quot;com.xmh.gulimall.member.feign&quot;)//扫描接口方法注解</span><br><span class="line">public class GulimallMemberApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(GulimallMemberApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在com.xmh.gulimall.member.feign中新建接口CouponFeignService</p>
+<pre><code>@FeignClient(&quot;gulimall-coupon&quot;)//告诉spring cloud这个接口是一个远程客户端，要调用coupon服务(nacos中找到)
+public interface CouponFeignService &#123;
+// 远程服务的url
+@RequestMapping(&quot;/coupon/coupon/member/list&quot;)//注意写全优惠券类上还有映射
+public R membercoupons();//得到一个R对象
+&#125;
+</code></pre>
+<p>在member的MemberController写一个测试</p>
+<pre><code>@Autowired
+private CouponFeignService couponFeignService; //注入刚才的CouponFeignService接口
+
+@RequestMapping(&quot;/coupons&quot;)
+public R coupons()&#123;
+    MemberEntity memberEntity = new MemberEntity();
+    memberEntity.setNickname(&quot;会员昵称张三&quot;);
+    R membercoupons = couponFeignService.membercoupons();
+
+    return R.ok().put(&quot;member&quot;, memberEntity).put(&quot;coupons&quot;, membercoupons.get(&quot;coupons&quot;));
+&#125;
+</code></pre>
+<h2 id="Http客户端-Feign"><a href="#Http客户端-Feign" class="headerlink" title="Http客户端 Feign"></a>Http客户端 Feign</h2><p>主要是用来替换如下的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//2利用RestTemplate发起http请求，查询用户</span><br><span class="line">//2.1 url路径</span><br><span class="line">String url=&quot;http://userservice/user/&quot;+order.getUserId();</span><br><span class="line">//2.2 发送http请求，实现远程调用</span><br><span class="line">User user=restTemplate.getForObject(url,User.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意:feign是微服务内部之间直接调用。</p>
+<h3 id="定义和使用"><a href="#定义和使用" class="headerlink" title="定义和使用"></a>定义和使用</h3><p>使用Feign的步骤如下：</p>
+<p>1.调用发出者引入openfeign依赖 </p>
+<p>2.调用发出者添加注解开启Feign的功能</p>
+<p>@EnableFeignClients</p>
+<p>3.编写Feignk客户端</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@FeignClient(&quot;userservice&quot;)  #指定服务名称，一般是服务提供者，用来发送http请求</span><br><span class="line">public interface UserClient&#123;</span><br><span class="line">	@GetMapping(&quot;/user/&#123;id&#125;&quot;)	#可变</span><br><span class="line">	User findById(@PathVarliable (&quot;id&quot;) Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>想要远程调用别的服务：</p>
+<p>1）引入open-feign</p>
+<p>2）编写一个接口，告诉springcloud这个接口需要调用原创服务</p>
+<p>​        1）声明接口的每一个方法都是调用哪个远程服务的那个请求</p>
+<p>3）。开启远程调用功能</p>
+<p>主要是基于SpringMVC的注解来声明远程调用的信息，比如：</p>
+<p>服务名称：userservice</p>
+<p>请求方式：GET</p>
+<p>请求路径：/user/{id}</p>
+<p>请求参数：Long id</p>
+<p>返回值类型：User</p>
+<h3 id="配置Feign日志"><a href="#配置Feign日志" class="headerlink" title="配置Feign日志"></a>配置Feign日志</h3><p>1.全局生效</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">feign:</span><br><span class="line"> client:</span><br><span class="line">  config:</span><br><span class="line">   default: #这里用default就是全局配置，如果写服务名称，则是针对某个微服务的配置 如改成userservice</span><br><span class="line">   loggerLevel:FULL #日志级别</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="自定义Feign的配置"><a href="#自定义Feign的配置" class="headerlink" title="自定义Feign的配置"></a>自定义Feign的配置</h3><p>走Java代码方式，需要先声明一个Bean</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class FeignClientConfiguration&#123;</span><br><span class="line">	@Bean </span><br><span class="line">	public Logger.Level.feignLogLevel()&#123;</span><br><span class="line">		return Logger.Level.BASIC;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1.而后如果是全局配置，则把它放到@EnableFeignClients这个注解中</p>
+<p>(就是放在该启动类上)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(defaultConfiguration=FeignClientConfiguration.class)</span><br></pre></td></tr></table></figure>
+
+<p>2.如果是局部配置，则把它放到@FeignClient这个注解中</p>
+<p>(就是放在之前UserClient那的地方)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@FeignClient(value=&quot;userservice&quot;,configuration=FeignClientConfiguration.class)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Feign的性能优化"><a href="#Feign的性能优化" class="headerlink" title="Feign的性能优化"></a>Feign的性能优化</h3><p>Feign添加HttpClient的支持</p>
+<p>引入依赖：feign-httpClient</p>
+<p>配置连接池：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">feign:</span><br><span class="line"> client:</span><br><span class="line">  config:</span><br><span class="line">   default: #default全局的配置</span><br><span class="line">    loggerlevel:BASIC #日志级别,BASIC就是基本的请求和相应消息</span><br><span class="line"> httpclient:</span><br><span class="line">  enabled:true #开启feign对HttpClient的支持</span><br><span class="line">  max-connections:200 #最大的连接数</span><br><span class="line">  max-connections-per-route:50 #每个路径的最大连接数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Feign的最佳实践"><a href="#Feign的最佳实践" class="headerlink" title="Feign的最佳实践"></a>Feign的最佳实践</h3><p>方式一： （继承）</p>
+<p>给消费者的FeignClient和提供者的controller定义统一的父接口作为标准。(有紧耦合问题)</p>
+<p>方案二：(抽取)：</p>
+<p>将FeignClient抽取为独立模块，并且把接口有关的POJO,默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
+<p>(使用的时候引依赖)</p>
+<p>实现步骤：</p>
+<p>1.首先创建一个module,命名为feign-api,然后引入feign的starter依赖</p>
+<p>2.将order-service中编写的UserClient，User,DefaultFeignConfiguration都复制到feign-api项目中。</p>
+<p>3.在order-service中引入feign-api的依赖</p>
+<p>4.修改order-service中的所有与上述三个组件有关的import部分，改成导入feign-api中的包</p>
+<p>5.重启测试</p>
+<p>此时定义的FeignClient不在SpringBootApplication的扫描包范围时，这些FeignClient无法使用，有两种方式解决：</p>
+<p>方式一：指定FeignClient所在包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(basePackages=&quot;cn.itcast.feign.clients&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>方式二：指定FeignClient字节码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@EnableFeignClients(clients=&#123;UserClient.class&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>OpenFeign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis和MybatisPlus的使用</title>
+    <url>/2022/11/16/Mybatis%E5%92%8CMybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>未完成…….</p>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h3 id="面试题参考："><a href="#面试题参考：" class="headerlink" title="面试题参考："></a>面试题参考：</h3><p><a href="http://topjavaer.cn/framework/mybatis.html">程序员大彬 (topjavaer.cn)</a></p>
+<h1 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h1><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="几个好用的封装注解："><a href="#几个好用的封装注解：" class="headerlink" title="几个好用的封装注解："></a>几个好用的封装注解：</h3>]]></content>
+      <tags>
+        <tag>Mybatis MybatisPlus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机基础知识</title>
+    <url>/2022/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="并发和并行："><a href="#并发和并行：" class="headerlink" title="并发和并行："></a>并发和并行：</h3><p>并发：两个任务共享时间段，比如令狐冲一个人刺瞎多人眼睛，速度很快看起来同时发生。（多线程只能并发）。</p>
+<p>并行：两个任务同一时间发生，比如多人运动，这是真正意义上同时发生的。（进程之间可以并行）。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="两个栈实现一个队列"><a href="#两个栈实现一个队列" class="headerlink" title="两个栈实现一个队列"></a>两个栈实现一个队列</h4><p>要求栈s1，s2,实现队列的先进先出，因栈是先入后出。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.入队：直接压入s1。</span><br><span class="line">2.出队：若s2不空，弹出s2栈顶元素；若空，把s1的所有元素全部弹出压入s2，（此时和元素原始顺序一致）再弹出s2的栈顶元素（删一个或者多个）。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>其余参考：<a href="http://topjavaer.cn/computer-basic/network.html#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">程序员大彬 (topjavaer.cn)</a></p>
+]]></content>
+      <tags>
+        <tag>计算机基础知识</tag>
       </tags>
   </entry>
 </search>
